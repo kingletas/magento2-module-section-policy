@@ -15,6 +15,8 @@ use Magento\Customer\Block\SectionConfig;
 
 /**
  * Narrows the map on its way into the page, which is the only place the browser reads it from.
+ *
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter")
  */
 class SectionConfigPlugin
 {

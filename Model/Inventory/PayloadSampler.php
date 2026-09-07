@@ -48,7 +48,8 @@ class PayloadSampler
 
         usort(
             $measurements,
-            static fn (SectionMeasurement $a, SectionMeasurement $b): int => ($b->bytes() ?? -1) <=> ($a->bytes() ?? -1)
+            static fn (SectionMeasurement $left, SectionMeasurement $right): int
+                => ($right->bytes() ?? -1) <=> ($left->bytes() ?? -1)
         );
 
         return $measurements;
