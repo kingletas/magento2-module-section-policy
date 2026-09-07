@@ -11,6 +11,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/kingletas/magento2-module-foundation"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/kingletas/magento2-module-logger"
         }
     ],
     "require": {
