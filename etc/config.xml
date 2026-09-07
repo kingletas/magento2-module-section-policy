@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <commerce_sectionpolicy>
+            <policy>
+                <!--
+                    Off, because narrowing an invalidation decides what a signed-in
+                    shopper is shown, and that is a decision to take after reading
+                    the report rather than a side effect of installing a module.
+                -->
+                <enabled>0</enabled>
+                <!--
+                    Empty, so the module is inert until a section is named. The
+                    report is what tells you which one is worth naming.
+                -->
+                <never_invalidated/>
+            </policy>
+        </commerce_sectionpolicy>
+    </default>
+</config>

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Commerce\SectionPolicy\Api\SectionPolicyInterface"
+                type="Commerce\SectionPolicy\Model\Policy\SectionPolicy"/>
+    <preference for="Commerce\SectionPolicy\Api\SectionInventoryInterface"
+                type="Commerce\SectionPolicy\Model\Inventory\SectionInventory"/>
+
+    <!--
+        The config section id is an argument, not a constant, which is what
+        makes the module rebrandable: bin/rebrand rewrites this one string.
+    -->
+    <type name="Commerce\SectionPolicy\Model\Config">
+        <arguments>
+            <argument name="section" xsi:type="string">commerce_sectionpolicy</argument>
+        </arguments>
+    </type>
+
+    <!--
+        Sections that say who the shopper is or what they are holding. A rule
+        naming one of these is refused and reported rather than applied, because
+        a stale one of these is another customer's data on the screen.
+    -->
+    <type name="Commerce\SectionPolicy\Model\Policy\PolicyGuard">
+        <arguments>
+            <argument name="protectedSections" xsi:type="array">
+                <item name="customer" xsi:type="string">customer</item>
+                <item name="cart" xsi:type="string">cart</item>
+                <item name="messages" xsi:type="string">messages</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--
+        One rule per action that ships with the invalidate-everything marker, all
+        reading the same list. A store whose extensions add their own wide action
+        adds a rule for it here; nothing is narrowed by guessing.
+    -->
+    <virtualType name="Commerce\SectionPolicy\Model\Policy\Rule\LoginPost"
+                 type="Commerce\SectionPolicy\Model\Policy\Rule\ExcludedSections">
+        <arguments>
+            <argument name="action" xsi:type="string">customer/account/loginpost</argument>
+            <argument name="configPath" xsi:type="string">policy/never_invalidated</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Commerce\SectionPolicy\Model\Policy\Rule\Logout"
+                 type="Commerce\SectionPolicy\Model\Policy\Rule\ExcludedSections">
+        <arguments>
+            <argument name="action" xsi:type="string">customer/account/logout</argument>
+            <argument name="configPath" xsi:type="string">policy/never_invalidated</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Commerce\SectionPolicy\Model\Policy\Rule\CreatePost"
+                 type="Commerce\SectionPolicy\Model\Policy\Rule\ExcludedSections">
+        <arguments>
+            <argument name="action" xsi:type="string">customer/account/createpost</argument>
+            <argument name="configPath" xsi:type="string">policy/never_invalidated</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Commerce\SectionPolicy\Model\Policy\Rule\EditPost"
+                 type="Commerce\SectionPolicy\Model\Policy\Rule\ExcludedSections">
+        <arguments>
+            <argument name="action" xsi:type="string">customer/account/editpost</argument>
+            <argument name="configPath" xsi:type="string">policy/never_invalidated</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Commerce\SectionPolicy\Model\Policy\SectionPolicy">
+        <arguments>
+            <argument name="rules" xsi:type="array">
+                <item name="login_post" xsi:type="object">Commerce\SectionPolicy\Model\Policy\Rule\LoginPost</item>
+                <item name="logout" xsi:type="object">Commerce\SectionPolicy\Model\Policy\Rule\Logout</item>
+                <item name="create_post" xsi:type="object">Commerce\SectionPolicy\Model\Policy\Rule\CreatePost</item>
+                <item name="edit_post" xsi:type="object">Commerce\SectionPolicy\Model\Policy\Rule\EditPost</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--
+        The same merged map the storefront block reads, so the report and the
+        page can never disagree about what an action invalidates.
+    -->
+    <type name="Commerce\SectionPolicy\Console\Command\ReportCommand">
+        <arguments>
+            <argument name="sectionConfig" xsi:type="object">SectionInvalidationConfigData</argument>
+            <argument name="name" xsi:type="string">commerce:section-policy:report</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="commerce_section_policy_report" xsi:type="object">Commerce\SectionPolicy\Console\Command\ReportCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+    The browser reads the invalidation map from this block and from nowhere else,
+    so this is the one place a narrower map can be handed over.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Block\SectionConfig">
+        <plugin name="commerce_section_policy"
+                type="Commerce\SectionPolicy\Plugin\Customer\Block\SectionConfigPlugin"
+                sortOrder="10"/>
+    </type>
+</config>

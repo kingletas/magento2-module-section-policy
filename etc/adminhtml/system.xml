@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="commerce_sectionpolicy" translate="label" type="text" sortOrder="906"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Section Policy</label>
+            <tab>advanced</tab>
+            <resource>Commerce_SectionPolicy::config</resource>
+
+            <group id="policy" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Private Content Invalidation</label>
+                <comment><![CDATA[Customer data — the mini cart, the greeting, the message banner — is
+                    fetched over <code>customer/section/load</code>, which no cache can hold. Some actions
+                    tell the browser that <strong>every</strong> section is stale, so one login refetches
+                    all of them, including sections that are the same for every visitor on earth.
+                    Run <code>bin/magento commerce:section-policy:report --measure</code> before changing
+                    anything here: it prints which actions are that wide and what each section costs.]]></comment>
+
+                <field id="enabled" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Apply The Policy</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Off out of the box, because narrowing an invalidation decides what a
+                        signed-in shopper is shown. <strong>Nothing changes until a section is named below,
+                        whichever way this is set.</strong> Sections that say who the shopper is —
+                        <code>customer</code>, <code>cart</code> and <code>messages</code> — are refused
+                        even when they are named, and the report says so.]]></comment>
+                </field>
+
+                <field id="never_invalidated" translate="label comment" type="textarea"
+                       sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Sections An Account Action Never Needs To Refetch</label>
+                    <comment><![CDATA[Comma-separated section names, taken out of the four
+                        <code>customer/account/*</code> actions that currently invalidate everything.
+                        <strong>The usual first entry is <code>directory-data</code></strong> — the country
+                        and region list, which is store configuration rather than anything about the shopper
+                        and is routinely the great majority of the response.
+                        <br/>Leave a section off this list and it keeps being invalidated, so a section you
+                        have not thought about is never quietly dropped. A name that is not a registered
+                        section fails the report rather than being ignored.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
