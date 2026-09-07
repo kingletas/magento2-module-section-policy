@@ -10,7 +10,7 @@ Magento serves storefront pages from a cache, so nothing about the shopper can b
 
 The browser decides when to make that request. Every page carries a map of *action → sections it makes stale*, and some actions use `*`, which means **every section**. Logging in is one of them. So is logging out, creating an account, and editing one.
 
-On a stock 2.4 store that means a login refetches all nineteen sections. Eighteen of them are a few hundred bytes together. The nineteenth is `directory-data` — every country and every region the store sells to, around **59 KB**, and **identical for every visitor on earth**. It is store configuration travelling through the one channel that exists because responses cannot be cached.
+On a stock 2.4 store that means a login refetches all nineteen sections. Eighteen of them are a few hundred bytes together. The nineteenth is `directory-data` — every country and every region the store sells to, around **59 KB**, and **identical for every visitor on earth**. It's store configuration travelling through the one channel that exists because responses cannot be cached.
 
 Nothing in a stock installation reports that this is happening.
 
@@ -64,7 +64,7 @@ bin/magento commerce:section-policy:report
   policy is in force
 ```
 
-Add `--measure` and it produces every section once and prints what each one weighs. That is how you find your own `directory-data`:
+Add `--measure` and it produces every section once and prints what each one weighs. That's how you find your own `directory-data`:
 
 ```text
   +---------------------------+-------+-------+
@@ -77,9 +77,9 @@ Add `--measure` and it produces every section once and prints what each one weig
   60850 bytes for an anonymous visitor, every section
 ```
 
-`--measure` runs the section sources, so it is a read of your store rather than of your configuration. The numbers are for an anonymous visitor; a signed-in one carries more.
+`--measure` runs the section sources, so it's a read of your store rather than of your configuration. The numbers are for an anonymous visitor; a signed-in one carries more.
 
-**The command fails when a rule cannot work** — a section name that does not exist, a section that says who the shopper is, an action no installed module declares. It is quiet when everything is fine, which is the only reason it will still be read in a month.
+**The command fails when a rule cannot work** — a section name that does not exist, a section that says who the shopper is, an action no installed module declares. It's quiet when everything is fine, which is the only reason it'll still be read in a month.
 
 ---
 
@@ -106,7 +106,7 @@ Both are store-scoped, so one website can narrow and another need not.
 
 **It never adds a section to an action.** Every rule is subtraction, so the worst a wrong rule can do is leave things as they were.
 
-**It refuses to drop `customer`, `cart` or `messages`.** Those say who the shopper is and what they are holding, and a stale one of them is another customer's data on the screen. Name one and the report fails rather than applying it.
+**It refuses to drop `customer`, `cart` or `messages`.** Those say who the shopper is and what they're holding, and a stale one of them is another customer's data on the screen. Name one and the report fails rather than applying it.
 
 **It leaves `stores/store/switch`, `stores/store/switchrequest` and `directory/currency/switch` alone**, deliberately. Switching store really can change the countries you sell to, the currency, the prices and the translations — everything genuinely is stale. Only the four account actions ship with a rule.
 
@@ -118,16 +118,16 @@ Both are store-scoped, so one website can narrow and another need not.
 
 The browser reads the map from exactly one place — `Magento\Customer\Block\SectionConfig::getSections()`, printed into every page by `Magento_Customer`'s `section-config.phtml`. A plugin on that method is the only interception point, and this module has one.
 
-When a rule applies, it replaces `['*']` with the registered section list minus the exclusions. That is not a change of meaning: `Magento_Customer/js/customer-data` already expands `*` to `sectionConfig.getSectionNames()`, and that list comes from the same block on the same page. Expanding it server-side gives the browser the list it would have built anyway, with the named sections missing.
+When a rule applies, it replaces `['*']` with the registered section list minus the exclusions. That's not a change of meaning: `Magento_Customer/js/customer-data` already expands `*` to `sectionConfig.getSectionNames()`, and that list comes from the same block on the same page. Expanding it server-side gives the browser the list it would have built anyway, with the named sections missing.
 
 > [!note] Why `sections.xml` cannot do this
-> The obvious approach is to declare the same action in your own `etc/frontend/sections.xml` with an explicit list. **It does not work, and it fails silently.** Magento merges config XML by adding, never by replacing, so the merged result is `["*","cart","customer",...]` — the wildcard is still there, the browser stops at it, and the behaviour is identical to having changed nothing. The config visibly changed and nothing else did.
+> The obvious approach is to declare the same action in your own `etc/frontend/sections.xml` with an explicit list. **It doesn't work, and it fails silently.** Magento merges config XML by adding, never by replacing, so the merged result is `["*","cart","customer",...]` — the wildcard is still there, the browser stops at it, and the behaviour is identical to having changed nothing. The config visibly changed and nothing else did.
 
 ---
 
 ## What this does not fix
 
-**The bootstrap.** Most of a `customer/section/load` request is Magento starting up, before any section does anything, and nothing here touches that. Narrowing an invalidation stops you shipping a country list on every login. It does not make the request itself faster.
+**The bootstrap.** Most of a `customer/section/load` request is Magento starting up, before any section does anything, and nothing here touches that. Narrowing an invalidation stops you shipping a country list on every login. It doesn't make the request itself faster.
 
 **How often the request happens.** The number of `section/load` calls is unchanged. What changes is what each one carries.
 

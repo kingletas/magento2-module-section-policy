@@ -1,6 +1,6 @@
 # From nothing to a working Commerce_SectionPolicy
 
-By the end of this you will know what your own store refetches when somebody logs in, what it costs, and how to stop the part of it that buys nothing.
+By the end of this you'll know what your own store refetches when somebody logs in, what it costs, and how to stop the part of it that buys nothing.
 
 ## Contents
 
@@ -31,7 +31,7 @@ composer require commerce/module-section-policy
 bin/magento module:enable Commerce_SectionPolicy && bin/magento setup:upgrade
 ```
 
-Nothing has changed on your storefront yet. That is deliberate — the module is inert until you name a section.
+Nothing has changed on your storefront yet. That's deliberate — the module is inert until you name a section.
 
 ## Step 2: find out what your store is doing
 
@@ -39,7 +39,7 @@ Nothing has changed on your storefront yet. That is deliberate — the module is
 bin/magento commerce:section-policy:report
 ```
 
-The first line is the one to read: how many actions are declared, and how many of them invalidate every section. On a stock 2.4 store that is seven. On a store with a few extensions it is often more, and the extra ones are usually the interesting ones.
+The first line is the one to read: how many actions are declared, and how many of them invalidate every section. On a stock 2.4 store that's seven. On a store with a few extensions it is often more, and the extra ones are usually the interesting ones.
 
 The table under it names them. `unchanged` in the last column means no rule covers that action yet.
 
@@ -71,13 +71,13 @@ bin/magento cache:flush
 
 Run the report again. The four `customer/account/*` rows now say `18 section(s)` instead of `every section (19)`, and each rule says what it keeps.
 
-If a rule says `misconfigured`, read the reason — a section name that does not exist, or one the module refuses to drop because it says who the shopper is. The command exits non-zero, so it is safe to put in a deployment check.
+If a rule says `misconfigured`, read the reason — a section name that does not exist, or one the module refuses to drop because it says who the shopper is. The command exits non-zero, so it's safe to put in a deployment check.
 
 ## Step 5: check the browser agrees
 
-The report reads the same map the storefront prints, but it is worth seeing it in the page once. Load any storefront page, view source, and search for `section-config`. The action `customer/account/loginpost` should list section names rather than `"*"`, and `directory-data` should not be among them.
+The report reads the same map the storefront prints, but it's worth seeing it in the page once. Load any storefront page, view source, and search for `section-config`. The action `customer/account/loginpost` should list section names rather than `"*"`, and `directory-data` should not be among them.
 
-If it still says `"*"`, the store has not rebuilt its plugin data yet. Clear `generated/` and load a storefront page before running any other `bin/magento` command.
+If it still says `"*"`, the store hasn't rebuilt its plugin data yet. Clear `generated/` and load a storefront page before running any other `bin/magento` command.
 
 ## What you get for free
 
