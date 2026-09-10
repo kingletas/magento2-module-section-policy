@@ -136,6 +136,7 @@ When a rule applies, it replaces `['*']` with the registered section list minus 
 ## Checks
 
 ```bash
+make install    # needs repo.magento.com credentials, for magento/framework
 make check
 ```
 
