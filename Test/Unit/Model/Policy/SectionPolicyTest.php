@@ -1,20 +1,20 @@
 <?php
 /**
- * @package   Commerce_SectionPolicy
- * @copyright Copyright (c) the Commerce modules authors
+ * @package   Kingletas_SectionPolicy
+ * @copyright Copyright (c) the Kingletas modules authors
  * @license   OSL-3.0 https://opensource.org/licenses/OSL-3.0
  */
 
 declare(strict_types=1);
 
-namespace Commerce\SectionPolicy\Test\Unit\Model\Policy;
+namespace Kingletas\SectionPolicy\Test\Unit\Model\Policy;
 
-use Commerce\SectionPolicy\Api\SectionRuleInterface;
-use Commerce\SectionPolicy\Model\Policy\InvalidationMap;
-use Commerce\SectionPolicy\Model\Policy\PolicyGuard;
-use Commerce\SectionPolicy\Model\Policy\RuleOutcome;
-use Commerce\SectionPolicy\Model\Policy\RuleVerdict;
-use Commerce\SectionPolicy\Model\Policy\SectionPolicy;
+use Kingletas\SectionPolicy\Api\SectionRuleInterface;
+use Kingletas\SectionPolicy\Model\Policy\InvalidationMap;
+use Kingletas\SectionPolicy\Model\Policy\PolicyGuard;
+use Kingletas\SectionPolicy\Model\Policy\RuleOutcome;
+use Kingletas\SectionPolicy\Model\Policy\RuleVerdict;
+use Kingletas\SectionPolicy\Model\Policy\SectionPolicy;
 use PHPUnit\Framework\TestCase;
 
 class SectionPolicyTest extends TestCase

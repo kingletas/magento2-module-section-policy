@@ -1,4 +1,4 @@
-# From nothing to a working Commerce_SectionPolicy
+# From nothing to a working Kingletas_SectionPolicy
 
 By the end of this you'll know what your own store refetches when somebody logs in, what it costs, and how to stop the part of it that buys nothing.
 
@@ -24,11 +24,11 @@ This module tells you when that is happening, and lets you stop the part of it t
 ## Step 1: install it
 
 ```bash
-composer require commerce/module-section-policy
+composer require kingletas/module-section-policy
 ```
 
 ```bash
-bin/magento module:enable Commerce_SectionPolicy && bin/magento setup:upgrade
+bin/magento module:enable Kingletas_SectionPolicy && bin/magento setup:upgrade
 ```
 
 Nothing has changed on your storefront yet. That's deliberate — the module is inert until you name a section.
@@ -36,7 +36,7 @@ Nothing has changed on your storefront yet. That's deliberate — the module is 
 ## Step 2: find out what your store is doing
 
 ```bash
-bin/magento commerce:section-policy:report
+bin/magento kingletas:section-policy:report
 ```
 
 The first line is the one to read: how many actions are declared, and how many of them invalidate every section. On a stock 2.4 store that's seven. On a store with a few extensions it is often more, and the extra ones are usually the interesting ones.
@@ -46,7 +46,7 @@ The table under it names them. `unchanged` in the last column means no rule cove
 ## Step 3: measure the sections
 
 ```bash
-bin/magento commerce:section-policy:report --measure
+bin/magento kingletas:section-policy:report --measure
 ```
 
 This produces every section once and prints what it weighs. Expect one row to be almost the whole total. On a stock store it is `directory-data` at around 98%.
@@ -58,11 +58,11 @@ The numbers are for a visitor who is not signed in. A signed-in shopper carries 
 Start with the one the measurement found:
 
 ```bash
-bin/magento config:set commerce_sectionpolicy/policy/never_invalidated directory-data
+bin/magento config:set kingletas_sectionpolicy/policy/never_invalidated directory-data
 ```
 
 ```bash
-bin/magento config:set commerce_sectionpolicy/policy/enabled 1
+bin/magento config:set kingletas_sectionpolicy/policy/enabled 1
 ```
 
 ```bash
@@ -88,4 +88,4 @@ If it still says `"*"`, the store hasn't rebuilt its plugin data yet. Clear `gen
 ## Where to go next
 
 - Add a rule for an action your extensions declare, in `etc/di.xml`. The shipped four are `customer/account/*`; the store and currency switches are deliberately left alone, because switching store really does change everything.
-- Put `bin/magento commerce:section-policy:report --require-enabled` in your deployment checks, so a store that quietly lost the setting says so.
+- Put `bin/magento kingletas:section-policy:report --require-enabled` in your deployment checks, so a store that quietly lost the setting says so.

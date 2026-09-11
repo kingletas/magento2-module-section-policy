@@ -1,21 +1,21 @@
 <?php
 /**
- * @package   Commerce_SectionPolicy
- * @copyright Copyright (c) the Commerce modules authors
+ * @package   Kingletas_SectionPolicy
+ * @copyright Copyright (c) the Kingletas modules authors
  * @license   OSL-3.0 https://opensource.org/licenses/OSL-3.0
  */
 
 declare(strict_types=1);
 
-namespace Commerce\SectionPolicy\Test\Unit\Model;
+namespace Kingletas\SectionPolicy\Test\Unit\Model;
 
-use Commerce\Foundation\Test\Support\CountingScopeConfig;
-use Commerce\SectionPolicy\Model\Config;
+use Kingletas\Foundation\Test\Support\CountingScopeConfig;
+use Kingletas\SectionPolicy\Model\Config;
 use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
-    private const SECTION = 'commerce_sectionpolicy';
+    private const SECTION = 'kingletas_sectionpolicy';
 
     public function testTheSwitchIsOffWhenNothingIsStored(): void
     {

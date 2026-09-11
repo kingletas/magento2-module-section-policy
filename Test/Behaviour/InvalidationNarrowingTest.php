@@ -1,22 +1,22 @@
 <?php
 /**
- * @package   Commerce_SectionPolicy
- * @copyright Copyright (c) the Commerce modules authors
+ * @package   Kingletas_SectionPolicy
+ * @copyright Copyright (c) the Kingletas modules authors
  * @license   OSL-3.0 https://opensource.org/licenses/OSL-3.0
  */
 
 declare(strict_types=1);
 
-namespace Commerce\SectionPolicy\Test\Behaviour;
+namespace Kingletas\SectionPolicy\Test\Behaviour;
 
-use Commerce\Foundation\Test\Support\CountingScopeConfig;
-use Commerce\SectionPolicy\Api\SectionInventoryInterface;
-use Commerce\SectionPolicy\Model\Config;
-use Commerce\SectionPolicy\Model\Policy\InvalidationMap;
-use Commerce\SectionPolicy\Model\Policy\PolicyGuard;
-use Commerce\SectionPolicy\Model\Policy\Rule\ExcludedSections;
-use Commerce\SectionPolicy\Model\Policy\SectionPolicy;
-use Commerce\SectionPolicy\Plugin\Customer\Block\SectionConfigPlugin;
+use Kingletas\Foundation\Test\Support\CountingScopeConfig;
+use Kingletas\SectionPolicy\Api\SectionInventoryInterface;
+use Kingletas\SectionPolicy\Model\Config;
+use Kingletas\SectionPolicy\Model\Policy\InvalidationMap;
+use Kingletas\SectionPolicy\Model\Policy\PolicyGuard;
+use Kingletas\SectionPolicy\Model\Policy\Rule\ExcludedSections;
+use Kingletas\SectionPolicy\Model\Policy\SectionPolicy;
+use Kingletas\SectionPolicy\Plugin\Customer\Block\SectionConfigPlugin;
 use Magento\Customer\Block\SectionConfig;
 use PHPUnit\Framework\TestCase;
 
@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
  */
 class InvalidationNarrowingTest extends TestCase
 {
-    private const SECTION = 'commerce_sectionpolicy';
+    private const SECTION = 'kingletas_sectionpolicy';
     private const PATH = 'policy/never_invalidated';
 
     /**

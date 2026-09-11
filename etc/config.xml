@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <commerce_sectionpolicy>
+        <kingletas_sectionpolicy>
             <policy>
                 <!--
                     Off, because narrowing an invalidation decides what a signed-in
@@ -16,6 +16,6 @@
                 -->
                 <never_invalidated/>
             </policy>
-        </commerce_sectionpolicy>
+        </kingletas_sectionpolicy>
     </default>
 </config>

@@ -1,5 +1,5 @@
 {
-    "name": "commerce/module-section-policy",
+    "name": "kingletas/module-section-policy",
     "description": "Decide what a private-content invalidation actually invalidates, and report what each action costs. Stops an action that changed the cart from refetching every customer-data section, including the country list that is the same for every visitor.",
     "type": "magento2-module",
     "license": "OSL-3.0",
@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": ">=8.4",
-        "commerce/module-foundation": "^1.0",
+        "kingletas/module-foundation": "^1.0",
         "magento/framework": ">=103.0",
         "magento/module-customer": ">=103.0"
     },
@@ -36,7 +36,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Commerce\\SectionPolicy\\": ""
+            "Kingletas\\SectionPolicy\\": ""
         },
         "exclude-from-classmap": [
             "/Test/"

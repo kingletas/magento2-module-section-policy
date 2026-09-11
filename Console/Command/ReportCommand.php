@@ -1,23 +1,23 @@
 <?php
 /**
- * @package   Commerce_SectionPolicy
- * @copyright Copyright (c) the Commerce modules authors
+ * @package   Kingletas_SectionPolicy
+ * @copyright Copyright (c) the Kingletas modules authors
  * @license   OSL-3.0 https://opensource.org/licenses/OSL-3.0
  */
 
 declare(strict_types=1);
 
-namespace Commerce\SectionPolicy\Console\Command;
+namespace Kingletas\SectionPolicy\Console\Command;
 
-use Commerce\SectionPolicy\Api\SectionInventoryInterface;
-use Commerce\SectionPolicy\Api\SectionPolicyInterface;
-use Commerce\SectionPolicy\Model\Area\FrontendScope;
-use Commerce\SectionPolicy\Model\Config;
-use Commerce\SectionPolicy\Model\Inventory\PayloadSampler;
-use Commerce\SectionPolicy\Model\Inventory\SectionMeasurement;
-use Commerce\SectionPolicy\Model\Policy\InvalidationMap;
-use Commerce\SectionPolicy\Model\Policy\PolicyReport;
-use Commerce\SectionPolicy\Model\Policy\RuleVerdict;
+use Kingletas\SectionPolicy\Api\SectionInventoryInterface;
+use Kingletas\SectionPolicy\Api\SectionPolicyInterface;
+use Kingletas\SectionPolicy\Model\Area\FrontendScope;
+use Kingletas\SectionPolicy\Model\Config;
+use Kingletas\SectionPolicy\Model\Inventory\PayloadSampler;
+use Kingletas\SectionPolicy\Model\Inventory\SectionMeasurement;
+use Kingletas\SectionPolicy\Model\Policy\InvalidationMap;
+use Kingletas\SectionPolicy\Model\Policy\PolicyReport;
+use Kingletas\SectionPolicy\Model\Policy\RuleVerdict;
 use Magento\Framework\Config\DataInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;

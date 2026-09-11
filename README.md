@@ -1,4 +1,4 @@
-# Commerce_SectionPolicy
+# Kingletas_SectionPolicy
 
 Decide what a private-content invalidation actually invalidates, and report what each action costs.
 
@@ -29,8 +29,8 @@ Two things, and the reporting half is the one you use first.
 ## Installation
 
 ```bash
-composer require commerce/module-section-policy
-bin/magento module:enable Commerce_SectionPolicy
+composer require kingletas/module-section-policy
+bin/magento module:enable Kingletas_SectionPolicy
 bin/magento setup:upgrade
 ```
 
@@ -41,7 +41,7 @@ bin/magento setup:upgrade
 ## The report
 
 ```bash
-bin/magento commerce:section-policy:report
+bin/magento kingletas:section-policy:report
 ```
 
 ```text
@@ -88,8 +88,8 @@ Add `--measure` and it produces every section once and prints what each one weig
 **Stores → Configuration → Advanced → Section Policy**, or:
 
 ```bash
-bin/magento config:set commerce_sectionpolicy/policy/never_invalidated directory-data
-bin/magento config:set commerce_sectionpolicy/policy/enabled 1
+bin/magento config:set kingletas_sectionpolicy/policy/never_invalidated directory-data
+bin/magento config:set kingletas_sectionpolicy/policy/enabled 1
 bin/magento cache:flush
 ```
 

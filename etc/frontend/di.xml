@@ -6,8 +6,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Customer\Block\SectionConfig">
-        <plugin name="commerce_section_policy"
-                type="Commerce\SectionPolicy\Plugin\Customer\Block\SectionConfigPlugin"
+        <plugin name="kingletas_section_policy"
+                type="Kingletas\SectionPolicy\Plugin\Customer\Block\SectionConfigPlugin"
                 sortOrder="10"/>
     </type>
 </config>

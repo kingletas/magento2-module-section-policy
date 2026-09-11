@@ -1,18 +1,18 @@
 <?php
 /**
- * @package   Commerce_SectionPolicy
- * @copyright Copyright (c) the Commerce modules authors
+ * @package   Kingletas_SectionPolicy
+ * @copyright Copyright (c) the Kingletas modules authors
  * @license   OSL-3.0 https://opensource.org/licenses/OSL-3.0
  */
 
 declare(strict_types=1);
 
-namespace Commerce\SectionPolicy\Model\Policy\Rule;
+namespace Kingletas\SectionPolicy\Model\Policy\Rule;
 
-use Commerce\SectionPolicy\Api\SectionInventoryInterface;
-use Commerce\SectionPolicy\Api\SectionRuleInterface;
-use Commerce\SectionPolicy\Model\Config;
-use Commerce\SectionPolicy\Model\Policy\InvalidationMap;
+use Kingletas\SectionPolicy\Api\SectionInventoryInterface;
+use Kingletas\SectionPolicy\Api\SectionRuleInterface;
+use Kingletas\SectionPolicy\Model\Config;
+use Kingletas\SectionPolicy\Model\Policy\InvalidationMap;
 
 /**
  * Takes named sections out of one action's list, and never adds any.
