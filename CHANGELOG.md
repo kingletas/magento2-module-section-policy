@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0
+
 The vendor is now Kingletas: the package is `kingletas/module-section-policy`, the namespace
 `Kingletas\SectionPolicy` and the module `Kingletas_SectionPolicy`, and every config
 section, table, console command and queue name starts with `kingletas`
