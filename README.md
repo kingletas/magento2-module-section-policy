@@ -98,7 +98,9 @@ bin/magento cache:flush
 | `policy/enabled` | `0` | Whether the rules are allowed to narrow anything. |
 | `policy/never_invalidated` | empty | Comma-separated sections taken out of the four `customer/account/*` actions. |
 
-Both are store-scoped, so one website can narrow and another need not.
+Both are editable at default and website scope, and read at store scope, so one website can narrow and another need not.
+
+**[Recommended settings](docs/recommended-settings.md)** says what to set on a production store and why.
 
 ---
 
