@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.1 - 2026-09-26
 
 Documentation only. `docs/recommended-settings.md` says what to set on a
 production store and why, and the README links to it. Nothing about how the
